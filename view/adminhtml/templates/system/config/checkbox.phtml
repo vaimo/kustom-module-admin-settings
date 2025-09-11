@@ -1,0 +1,34 @@
+<?php
+/**
+ * @var \Klarna\AdminSettings\Block\Adminhtml\System\Config\Checkbox $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+$block->calculateAndSetCheckedFields();
+?>
+
+<!-- this is send if nothing is checked -->
+<input type="hidden" name="<?= $escaper->escapeUrl($block->getNamePrefix()) ?>" value="" />
+<ul class="checkboxes">
+    <?php foreach ($block->getValues() as $name => $label): ?>
+        <li>
+            <input type="checkbox" value="<?= $escaper->escapeUrl($name) ?>"
+                   name="<?= $escaper->escapeUrl($block->getNamePrefix()) ?>[<?= $escaper->escapeUrl($name) ?>]"
+                   id="<?= $escaper->escapeUrl($block->getHtmlId() . '_' . $name) ?>"
+                <?= ($block->isChecked($name) ? ' checked="checked"' : '') ?>/>
+            <label for="<?= $escaper->escapeUrl($block->getHtmlId() . '_' . $name) ?>">
+                <?= $escaper->escapeUrl($label) ?>
+            </label>
+        </li>
+    <?php endforeach;?>
+    <?php foreach ($block->getReadOnlyValues() as $name => $label): ?>
+        <li>
+            <input type="checkbox" value="<?= $escaper->escapeUrl($name) ?>"
+                   name="<?= $escaper->escapeUrl($block->getNamePrefix()) ?>[<?= $escaper->escapeUrl($name) ?>]"
+                   id="<?= $escaper->escapeUrl($block->getHtmlId() . '_' . $name) ?>"
+                   checked="checked" readonly disabled />
+            <label for="<?= $escaper->escapeUrl($block->getHtmlId() . '_' . $name) ?>">
+                <?= $escaper->escapeUrl($label) ?>
+            </label>
+        </li>
+    <?php endforeach;?>
+</ul>

@@ -1,0 +1,944 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Klarna Bank AB (publ)
+ *
+ * For the full copyright and license information, please view the NOTICE
+ * and LICENSE files that were distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <resource>Klarna_Logger::system_logging</resource>
+            <group id="klarna_section" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="reference" type="note" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Klarna\AdminSettings\Model\System\Config\General\Reference</frontend_model>
+                </field>
+                <comment><![CDATA[<div class='klarna-payment-logo'></div><div class='klarna-payment-text'>The leading checkout in the Nordics, built for higher conversion and returning shoppers. Easy to integrate, supports Klarna and all popular payment methods, and includes built-in shipping.</div>]]></comment>
+                <fieldset_css>complex klarna-section</fieldset_css>
+                <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\General\Fieldset\Payment</frontend_model>
+                <group id="api" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0"
+                       translate="label">
+                    <label>General settings</label>
+                    <field id="onboarding_link" type="note" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\General\Form\Field\Onboarding</frontend_model>
+                    </field>
+                    <field id="allowspecific" translate="label comment" type="select" showInDefault="1" sortOrder="5"
+                           showInWebsite="1" showInStore="0">
+                        <label>Allowed Countries</label>
+                        <config_path>klarna/general/allow_specific_countries</config_path>
+                        <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                    </field>
+                    <field id="specificcountry" translate="label" type="multiselect" showInDefault="1" sortOrder="6"
+                           showInWebsite="1"
+                           showInStore="0">
+                        <label>Payment from Specific countries</label>
+                        <config_path>klarna/general/specific_countries</config_path>
+                        <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                        <depends>
+                            <field id="allowspecific">1</field>
+                        </depends>
+                    </field>
+                    <field id="region" sortOrder="10" translate="label" type="checkbox" showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="0">
+                        <label>Region</label>
+                        <config_path>klarna/api/region</config_path>
+                        <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Api\Region</frontend_model>
+                    </field>
+                    <group id="api_au" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for Australia</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_au/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_au/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_au/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_au/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_au/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Playground)</label>
+                            <config_path>klarna/api_au/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_au/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="api_ca" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for Canada</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_ca/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_ca/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_ca/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_ca/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_ca/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Playground)</label>
+                            <config_path>klarna/api_ca/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_ca/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="api_eu" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for Europe</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_eu/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_eu/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_eu/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_eu/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_eu/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Playground)</label>
+                            <config_path>klarna/api_eu/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_eu/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="api_mx" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for Mexico</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_mx/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_mx/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_mx/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_mx/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_mx/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Playground)</label>
+                            <config_path>klarna/api_mx/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_mx/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="api_nz" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for New Zealand</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_nz/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_nz/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_nz/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_nz/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_nz/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Playground)</label>
+                            <config_path>klarna/api_nz/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_nz/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="api_us" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0"
+                           translate="label">
+                        <label>API credentials for US</label>
+                        <field id="api_mode" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API Mode</label>
+                            <config_path>klarna/api_us/api_mode</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\General\Mode</source_model>
+                        </field>
+                        <field id="username_production" sortOrder="20" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Production)</label>
+                            <config_path>klarna/api_us/username_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="password_production" sortOrder="30" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password (Production)</label>
+                            <config_path>klarna/api_us/password_production</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Production)</label>
+                            <config_path>klarna/api_us/client_identifier_production</config_path>
+                            <depends>
+                                <field id="api_mode">0</field>
+                            </depends>
+                        </field>
+                        <field id="username_playground" sortOrder="50" translate="label" type="text" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API username (Playground)</label>
+                            <config_path>klarna/api_us/username_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="password_playground" sortOrder="60" translate="label" type="obscure" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>API password ((Playground))</label>
+                            <config_path>klarna/api_us/password_playground</config_path>
+                            <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Client Identifier (Playground)</label>
+                            <config_path>klarna/api_us/client_identifier_playground</config_path>
+                            <depends>
+                                <field id="api_mode">1</field>
+                            </depends>
+                        </field>
+                    </group>
+
+                    <group id="logger" translate="label" sortOrder="100" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Logger</label>
+                        <field id="enabled" translate="label" type="select" sortOrder="0" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Enable</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>klarna/api/debug</config_path>
+                        </field>
+                    </group>
+
+                    <group id="klarna_shipping_required" translate="label" sortOrder="100" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Shipping Options</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                        <field id="product_size_unit" translate="label comment" type="select" sortOrder="30"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Product size unit</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Orderlines\Source\Productunit</source_model>
+                            <comment>Defines which unit will be used for the product size</comment>
+                            <config_path>klarna/shipping/product_unit</config_path>
+                        </field>
+                        <field id="product_length_attribute" translate="label comment" type="select" sortOrder="40"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Product length attribute</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Orderlines\Source\Customproductattributes</source_model>
+                            <comment>Custom attribute for the product length attribute</comment>
+                            <config_path>klarna/shipping/length</config_path>
+                        </field>
+                        <field id="product_width_attribute" translate="label comment" type="select" sortOrder="50"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Product width attribute</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Orderlines\Source\Customproductattributes</source_model>
+                            <comment>Custom attribute for the product width attribute</comment>
+                            <config_path>klarna/shipping/width</config_path>
+                        </field>
+                        <field id="product_height_attribute" translate="label comment" type="select" sortOrder="60"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Product height attribute</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Orderlines\Source\Customproductattributes</source_model>
+                            <comment>Custom attribute for the product height attribute</comment>
+                            <config_path>klarna/shipping/height</config_path>
+                        </field>
+                    </group>
+                </group>
+                <group id="klarna_kp_required" translate="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Klarna Payments</label>
+                    <comment>Give your customers the ability to pay in flexible ways such as Buy now, Pay Later, Invoicing, Instalments and Financing.</comment>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="active" translate="label comment" type="select" showInDefault="1" showInWebsite="1"
+                           showInStore="0">
+                        <label>Enable</label>
+                        <config_path>payment/klarna_kp/active</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="enable_b2b" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable B2B</label>
+                        <config_path>payment/klarna_kp/enable_b2b</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>Allow B2B payments (Not available in all markets. Must be setup in your contract with Klarna)</comment>
+                    </field>
+                    <field id="sort_order" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Sort Order</label>
+                        <config_path>payment/klarna_kp/sort_order</config_path>
+                        <validate>validate-digits</validate>
+                    </field>
+                </group>
+                <group id="osm" translate="label" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>On-Site Messaging</label>
+                    <comment>Add personalized messaging throughout the shopper journey for higher conversion rates and increased spend.</comment>
+                    <field id="enabled" sortOrder="10" translate="label" type="select" showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="0">
+                        <label>Enable</label>
+                        <comment><![CDATA[If it does not show up please ensure that the domain is whitelisted. For more information please click <a target="_blank" href="https://docs.klarna.com/on-site-messaging/integrate-on-site-messaging/integrate-using-the-web-sdk/#step-1-activation-3-allowlisting-your-domain">here</a>]]></comment>
+                        <tooltip>The activation of On-site messaging at checkout may vary based on your Klarna payment integration method.</tooltip>
+                        <config_path>klarna/osm/enabled</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <group id="theme_and_placements" translate="label" sortOrder="20" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Theme and placements</label>
+                        <comment>Tailor On-Site messaging to fit your brand by adjusting the theme and selecting placements.</comment>
+                        <field id="theme" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Theme</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Osm\Source\Theme</source_model>
+                            <config_path>klarna/osm/theme</config_path>
+                        </field>
+                        <field id="custom" sortOrder="20" translate="label" type="text"
+                               showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Custom theme name</label>
+                            <config_path>klarna/osm/custom_theme_name</config_path>
+                            <depends>
+                                <field id="theme">custom</field>
+                            </depends>
+                        </field>
+                        <field id="position" sortOrder="30" translate="label" type="checkbox" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Placements</label>
+                            <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Osm\Position</frontend_model>
+                            <config_path>klarna/osm/position</config_path>
+                        </field>
+                    </group>
+                </group>
+                <group id="kec" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Express Checkout</label>
+                    <comment>Offer a 6x faster check-out process that will lower the threshold for shoppers to complete a purchase.</comment>
+                    <field id="enabled" sortOrder="0" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Enable</label>
+                        <config_path>payment/kec/enabled</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <group id="theme_shape_and_placements" translate="label" sortOrder="10" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Theme, button shape and placements</label>
+                        <comment>Tailor the express checkout button to fit your brand by adjusting the button theme, shape and selecting placements.</comment>
+                        <field id="position" translate="label" type="checkbox" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Enable on</label>
+                            <config_path>payment/kec/position</config_path>
+                            <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Kec\Position</frontend_model>
+                        </field>
+                        <field id="theme" sortOrder="20" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Button theme</label>
+                            <config_path>payment/kec/theme</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kec\Source\Themes</source_model>
+                        </field>
+                        <field id="shape" sortOrder="30" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Button shape</label>
+                            <config_path>payment/kec/shape</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kec\Source\Shapes</source_model>
+                        </field>
+                    </group>
+                </group>
+                <group id="siwk" translate="label" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Sign in with Klarna</label>
+                    <comment>Reduce fraud rates through verified identities and consented shopper data, improve personalized shopping experiences.</comment>
+                    <field id="enabled" sortOrder="0" translate="label" type="select" showInDefault="1"
+                           showInWebsite="1"
+                           showInStore="0">
+                        <label>Enable</label>
+                        <config_path>klarna/siwk/enabled</config_path>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment><![CDATA[<div>This URL <b>"https://{url-of-your-shop}/siwk/klarna/callback"</b> must be set as the "Redirect URL" in the Klarna Merchant Portal → the Sign in with Klarna section. Also ensure to add the shop domain in the "Allowed origins" section, under Payment settings → Client identifier section.</div>]]></comment>
+                    </field>
+                    <field id="scopes" translate="label" type="checkbox" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <label>Select the scope for sign-in with Klarna</label>
+                        <config_path>klarna/siwk/scope</config_path>
+                        <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Siwk\Scope</frontend_model>
+                        <comment><![CDATA[Default scopes are always used but you can also select additional scopes. The scopes must be also enabled for your account in the Klarna Merchant Portal. For more information see <a href="https://docs.klarna.com/conversion-boosters/sign-in-with-klarna/integrate-sign-in-with-klarna/web-sdk-integration/#scopes-and-claims" target="_blank">here</a>]]></comment>
+                    </field>
+                    <group id="theme_button_shape_and_placements" translate="label" sortOrder="10" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Theme, button shape and placements</label>
+                        <comment>Tailor the sign-in with Klarna button to fit your brand by adjusting the button theme, shape and selecting placements.</comment>
+                        <field id="button_theme" sortOrder="0" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Theme</label>
+                            <config_path>klarna/siwk/button_theme</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Siwk\Source\ButtonTheme</source_model>
+                        </field>
+                        <field id="button_shape" sortOrder="10" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Shape</label>
+                            <config_path>klarna/siwk/button_shape</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Siwk\Source\ButtonShape</source_model>
+                        </field>
+                        <field id="button_alignment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Alignment</label>
+                            <config_path>klarna/siwk/button_alignment</config_path>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Siwk\Source\Alignment</source_model>
+                        </field>
+                        <field id="placements" translate="label" type="checkbox" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Placements</label>
+                            <config_path>klarna/siwk/placement</config_path>
+                            <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Siwk\Position</frontend_model>
+                        </field>
+                    </group>
+                </group>
+                <group id="klarna_kco_required" translate="label" sortOrder="1000" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Kustom Checkout</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                    <field id="active" translate="label" type="select" sortOrder="0" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Enable</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <config_path>payment/klarna_kco/active</config_path>
+                    </field>
+                    <group id="checkout_general_settings" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>Checkout General settings</label>
+                        <field id="order_status" translate="label" type="select" sortOrder="1" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Status for new orders</label>
+                            <comment>New orders created will have this status. Default status is Processing.</comment>
+                            <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                            <config_path>payment/klarna_kco/order_status</config_path>
+                        </field>
+                        <field id="shipping_countries" translate="label comment" type="multiselect" sortOrder="2"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Shipping Countries</label>
+                            <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                            <comment>Supported shipping countries for Klarna.</comment>
+                            <config_path>payment/klarna_kco/shipping_countries</config_path>
+                        </field>
+                        <field id="shipping_and_billing_countries_same" sortOrder="3" translate="label" type="select" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Shipping countries and billing countries are the same</label>
+                            <config_path>payment/klarna_kco/shipping_and_billing_countries_same</config_path>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        </field>
+                        <field id="billing_countries" translate="label comment" type="multiselect" sortOrder="4"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Billing Countries</label>
+                            <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                            <comment>Supported billing countries for Klarna.</comment>
+                            <config_path>payment/klarna_kco/billing_countries</config_path>
+                            <depends>
+                                <field id="shipping_and_billing_countries_same">0</field>
+                            </depends>
+                        </field>
+                        <field id="disable_customer_group" translate="label comment" type="multiselect" sortOrder="5"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Disable Klarna for specific customer groups</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kco\Source\Customer\Group</source_model>
+                            <backend_model>Klarna\AdminSettings\Model\System\Config\Kco\Backend\Multiselect</backend_model>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>Selected groups will see standard checkout instead of Klarna checkout.</comment>
+                            <config_path>payment/klarna_kco/disable_customer_group</config_path>
+                        </field>
+                        <field id="external_payment_methods" translate="label comment" type="multiselect" sortOrder="6"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>External Payment Methods</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kco\Source\Externalmethods</source_model>
+                            <backend_model>Klarna\AdminSettings\Model\System\Config\Kco\Backend\Multiselect</backend_model>
+                            <can_be_empty>1</can_be_empty>
+                            <comment>Additional payment methods not processed through Klarna, e.g. PayPal, that can be included on the Klarna checkout page. Make sure to enable the specific payment method first for it to show up in the list</comment>
+                            <config_path>payment/klarna_kco/external_payment_methods</config_path>
+                        </field>
+                        <field id="guest_checkout" translate="label comment" type="select" sortOrder="7"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Allow Guest Checkout</label>
+                            <comment>If guests are allowed to buy through KCO. If not, guest customers will be redirected to Magento's default checkout. Registered customers will still see KCO.</comment>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>checkout/klarna_kco/guest_checkout</config_path>
+                        </field>
+                        <field id="enable_b2b" translate="label comment" type="select" sortOrder="8" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Enable B2B mode</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Enable B2B checkout mode</comment>
+                            <config_path>checkout/klarna_kco/enable_b2b</config_path>
+                        </field>
+                        <field id="business_id_attribute" translate="label comment" type="select" sortOrder="9"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Business ID attribute</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kco\Source\Customer\CustomAttributes</source_model>
+                            <comment>Custom attribute for business id</comment>
+                            <depends>
+                                <field id="enable_b2b">1</field>
+                            </depends>
+                            <config_path>checkout/klarna_kco/business_id_attribute</config_path>
+                        </field>
+                        <field id="auto_focus" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Auto focus Klarna Checkout</label>
+                            <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                            <config_path>checkout/klarna_kco/auto_focus</config_path>
+                        </field>
+                    </group>
+                    <group id="prefill_options" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>Prefill Options</label>
+                        <field id="merchant_prefill" translate="label comment" type="select" sortOrder="0"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Pre-fill Customer Details</label>
+                            <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                            <comment>Pre-fill Klarna Checkout with stored customer data.</comment>
+                            <config_path>checkout/klarna_kco/merchant_prefill</config_path>
+                        </field>
+                        <field id="prefill_notice" translate="label comment" type="select" sortOrder="10"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Customer pre-fill notice</label>
+                            <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                            <comment>Display a pre-fill notice to registered customer before submitting details to Klarna. The customer must accept the notice to have their account details shared with Klarna.</comment>
+                            <depends>
+                                <field id="merchant_prefill">1</field>
+                            </depends>
+                            <config_path>checkout/klarna_kco/prefill_notice</config_path>
+                        </field>
+                    </group>
+                    <group id="mandatory_field_options" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>Mandatory Field Options</label>
+                        <field id="title_mandatory" translate="label comment" type="select" sortOrder="0"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Title mandatory</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Only available in certain markets.</comment>
+                            <config_path>checkout/klarna_kco/title_mandatory</config_path>
+                        </field>
+                        <field id="dob_mandatory" translate="label comment" type="select" sortOrder="10"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Date of birth mandatory</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Only available in certain markets.</comment>
+                            <config_path>checkout/klarna_kco/dob_mandatory</config_path>
+                        </field>
+                        <field id="national_identification_number_mandatory" translate="label comment" type="select"
+                               sortOrder="20" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>National identification number mandatory</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Only available in certain markets.</comment>
+                            <config_path>checkout/klarna_kco/national_identification_number_mandatory</config_path>
+                        </field>
+                        <field id="phone_mandatory" translate="label comment" type="select" sortOrder="30"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Telephone number mandatory</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Only available in certain markets. NOTE: You must also update the attribute in Magento to make this field optional if you set this to 'no'</comment>
+                            <config_path>checkout/klarna_kco/phone_mandatory</config_path>
+                        </field>
+                    </group>
+                    <group id="shipping_options" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>Shipping Options</label>
+                        <field id="shipping_in_iframe" translate="label comment" type="select" sortOrder="0"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Shipping methods in iframe</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Display shipping methods in Klarna iframe. (This is ignored and forced to 'no' in some markets)</comment>
+                            <config_path>checkout/klarna_kco/shipping_in_iframe</config_path>
+                        </field>
+                        <field id="packstation_enabled" translate="label comment" type="select" sortOrder="10"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Packstation Enabled</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>checkout/klarna_kco/packstation_enabled</config_path>
+                        </field>
+                        <field id="separate_address" translate="label comment" type="select" sortOrder="20"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Separate shipping addresses</label>
+                            <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                            <comment>Allow shipping address to be different from billing address.</comment>
+                            <config_path>checkout/klarna_kco/separate_address</config_path>
+                        </field>
+                    </group>
+                    <group id="url_options" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>URL Options</label>
+                        <field id="terms_url" translate="label comment" type="text" sortOrder="0" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>URL to terms and conditions</label>
+                            <validate>required-entry</validate>
+                            <comment>URL to this store's own terms and conditions.</comment>
+                            <config_path>checkout/klarna_kco/terms_url</config_path>
+                        </field>
+                        <field id="cancellation_terms_url" translate="label comment" type="text" sortOrder="10"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>URL to cancellation terms</label>
+                            <comment>URL to this store's own cancellation terms and conditions.</comment>
+                            <config_path>checkout/klarna_kco/cancellation_terms_url</config_path>
+                        </field>
+                        <field id="failure_url" translate="label comment" type="text" sortOrder="20" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>URL to redirect for checkout failures</label>
+                            <comment>Must be a fully qualified URL. If left blank, defaults to the cart URL.</comment>
+                            <config_path>checkout/klarna_kco/failure_url</config_path>
+                        </field>
+                    </group>
+                    <group id="added_checkbox_options" type="text" sortOrder="60" showInDefault="1" showInWebsite="1"
+                           showInStore="0"
+                           translate="label">
+                        <label>Added Checkbox Options</label>
+                        <field id="merchant_checkbox" translate="label comment" type="select" sortOrder="0"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Merchant Checkbox</label>
+                            <source_model>Klarna\AdminSettings\Model\System\Config\Kco\Source\MerchantCheckbox</source_model>
+                            <comment>Enable a checkbox within the checkout to trigger user behavior. May not be available in all markets.</comment>
+                            <config_path>checkout/klarna_kco/merchant_checkbox</config_path>
+                        </field>
+                        <field id="merchant_checkbox_text" translate="label comment" type="text" sortOrder="10"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Merchant Checkbox Text</label>
+                            <comment>Leave blank to use default text with selected method.</comment>
+                            <config_path>checkout/klarna_kco/merchant_checkbox_text</config_path>
+                        </field>
+                        <field id="merchant_checkbox_required" translate="label comment" type="select" sortOrder="20"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Merchant Checkbox Required</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>If the checkbox must be checked before the customer can place the order.</comment>
+                            <config_path>checkout/klarna_kco/merchant_checkbox_required</config_path>
+                        </field>
+                        <field id="merchant_checkbox_checked" translate="label comment" type="select" sortOrder="30"
+                               showInDefault="1" showInWebsite="1" showInStore="0">
+                            <label>Merchant Checkbox Checked</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>If the checkbox will be checked by default.</comment>
+                            <config_path>checkout/klarna_kco/merchant_checkbox_checked</config_path>
+                        </field>
+                        <field id="custom_checkboxes" translate="label" sortOrder="122" showInDefault="1"
+                               showInWebsite="1" showInStore="40">
+                            <label>Custom Checkboxes</label>
+                            <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                            <frontend_model>Klarna\AdminSettings\Block\Adminhtml\System\Config\Kco\Customcheckboxes</frontend_model>
+                            <comment>
+                                <![CDATA[Add multiple additional custom checkboxes to Klarna Checkout.]]>
+                            </comment>
+                            <config_path>checkout/klarna_kco/custom_checkboxes</config_path>
+                        </field>
+                    </group>
+                    <group id="klarna_kco_design" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
+                           showInStore="0" translate="label">
+                        <label>Design</label>
+                        <field id="color_button" translate="label comment" type="text" sortOrder="10" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout button color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_button</config_path>
+                        </field>
+                        <field id="color_button_text" translate="label comment" type="text" sortOrder="20"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout button text color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_button_text</config_path>
+                        </field>
+                        <field id="color_checkbox" translate="label comment" type="text" sortOrder="30"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout checkbox color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_checkbox</config_path>
+                        </field>
+                        <field id="color_checkbox_checkmark" translate="label comment" type="text" sortOrder="40"
+                               showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout checkbox check mark color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_checkbox_checkmark</config_path>
+                        </field>
+                        <field id="color_header" translate="label comment" type="text" sortOrder="50" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout header color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_header</config_path>
+                        </field>
+                        <field id="color_link" translate="label comment" type="text" sortOrder="60" showInDefault="1"
+                               showInWebsite="1"
+                               showInStore="0">
+                            <label>Checkout link color</label>
+                            <comment>Example: #0072CC</comment>
+                            <config_path>checkout/klarna_kco_design/color_link</config_path>
+                        </field>
+                        <field id="radius_border" translate="label comment" type="text" sortOrder="70" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Checkout border radius</label>
+                            <comment>Example: 0px</comment>
+                            <config_path>checkout/klarna_kco_design/radius_border</config_path>
+                        </field>
+                    </group>
+                    <group id="klarna_kss_required" translate="label" sortOrder="100" showInDefault="1"
+                           showInWebsite="1" showInStore="0">
+                        <label>Klarna Shipping Assistant</label>
+                        <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                        <field id="kss_enabled" translate="label" type="select" sortOrder="10" showInDefault="1"
+                               showInWebsite="1" showInStore="0">
+                            <label>Enable</label>
+                            <comment>Klarna Shipping Assistant must also be enabled in Klarna Merchant Portal.</comment>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <config_path>payment/klarna_kss/enabled</config_path>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>
