@@ -42,9 +42,8 @@ class ReferenceTest extends TestCase
 
         $element = $this->mockFactory->create(Text::class);
 
-        $baseUrl = 'https://docs.klarna.com/platform-solutions/';
         $docsUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/before-you-start/extension-components';
-        $troubleshootingUrl = $baseUrl .'e-commerce-platforms/adobe-commerce/payments/troubleshooting/';
+        $troubleshootingUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/introduction#troubleshooting';
 
         $expected =
             '<div>' .
