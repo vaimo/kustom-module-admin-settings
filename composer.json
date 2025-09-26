@@ -3,7 +3,7 @@
     "description": "Kustom Admin Settings Magento 2 Extension",
     "type": "magento2-module",
     "license": "Apache-2.0",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "require": {
         "vaimo/kustom-module-base": "11.0.12",
         "magento/framework": "^103",
