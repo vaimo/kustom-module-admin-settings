@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Klarna\AdminSettings\Model\Configurations;
 
-use Magento\Store\Api\Data\StoreInterface;
 use Klarna\Base\Exception as KlarnaException;
+use Magento\Store\Api\Data\StoreInterface;
 
 /**
  * @internal
@@ -56,6 +56,8 @@ class Api extends AbstractConfiguration
     /**
      * Getting back the region
      *
+     * @deprecad Kustom supports regions without needing different API endpoints, so distinguishing them is no longer necessary.
+     *
      * @param StoreInterface $store
      * @param string $currency
      * @return string
@@ -68,11 +70,11 @@ class Api extends AbstractConfiguration
             case 'CAD':
             case 'MXN':
             case 'USD':
-                $targetRegion = 'na';
+                $targetRegion = 'eu';
                 break;
             case 'NZD':
             case 'AUD':
-                $targetRegion = 'oc';
+                $targetRegion = 'eu';
                 break;
             default:
                 $targetRegion = 'eu';
@@ -95,7 +97,7 @@ class Api extends AbstractConfiguration
      */
     public function getAllEnabledRegions(StoreInterface $store): array
     {
-        return $this->generateArrayResult($this->getConfigValue($store, 'klarna/api/region'));
+        return ['eu'];
     }
 
     /**
@@ -238,9 +240,11 @@ class Api extends AbstractConfiguration
                 throw new KlarnaException(__('Invalid region: ' . $region));
         }
 
-        $mode = $this->isTestMode($store, $currency) ? '.playground' : '';
+        if ($this->isTestMode($store, $currency)) {
+            return 'https://api.playground.kustom.co';
+        }
 
-        return 'https://api' . $endpoint . $mode . '.klarna.com';
+        return 'https://api' . $endpoint . '.klarna.com';
     }
 
     /**
