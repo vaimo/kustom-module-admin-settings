@@ -54,8 +54,8 @@ class Reference extends Field
      */
     public function render(AbstractElement $element)
     {
-        $docsUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/before-you-start/extension-components';
-        $troubleshootingUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/introduction#troubleshooting';
+        $docsUrl = 'https://docs.kustom.co/contents/partners/e-commerce-platforms/magento';
+        $troubleshootingUrl = 'https://docs.kustom.co/contents/partners/e-commerce-platforms/adobe-commerce/before-you-start/info-and-faq#troubleshooting';
         $logsUrl = $this->urlBuilder->getUrl('klarna/index/logs');
         $supportUrl = $this->urlBuilder->getUrl('klarna_support/index/support/form/new');
 

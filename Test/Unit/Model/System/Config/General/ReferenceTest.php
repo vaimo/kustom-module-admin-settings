@@ -42,8 +42,8 @@ class ReferenceTest extends TestCase
 
         $element = $this->mockFactory->create(Text::class);
 
-        $docsUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/before-you-start/extension-components';
-        $troubleshootingUrl = 'https://docs.kustom.co/v3/resources/partners/e-commerce-platforms/adobe-commerce/introduction#troubleshooting';
+        $docsUrl = 'https://docs.kustom.co/contents/partners/e-commerce-platforms/magento';
+        $troubleshootingUrl = 'https://docs.kustom.co/contents/partners/e-commerce-platforms/adobe-commerce/before-you-start/info-and-faq#troubleshooting';
 
         $expected =
             '<div>' .

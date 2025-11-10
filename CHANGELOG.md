@@ -1,4 +1,11 @@
 
+1.1.0 / 2025-11-10
+==================
+
+  * KUSTOM-33 Change documentation URLs in admin panel
+  * KUSTOM-33 Removing the unused endpoints which were used to by Klarna
+
+
 1.0.14 / 2025-06-03
 ==================
 

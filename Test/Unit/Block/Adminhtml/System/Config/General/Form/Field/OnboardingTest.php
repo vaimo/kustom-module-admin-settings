@@ -36,9 +36,11 @@ class OnboardingTest extends TestCase
     public function testRenderReturnsCorrectUrl(): void
     {
         $expected = 'To unlock the plugin\'s features, enter your credentials. Get the client identifier ' .
-            'and API credentials from the <p style="display:inline"><a href="https://portal.klarna.com/signup" ' .
-            'target="_blank">Klarna Merchant Portal</a></p>, under Settings.' . "<br/><br/>" .
-            '<b>By activating Klarna using API credentials you agree to and accept the <p style="display:inline"><a href="https://portal.klarna.com/privacy-policy" target="_blank">Klarna Merchant Privacy Notice</a></p>.<b/>';
+            'and API credentials from the <p style="display:inline"><a href="https://portal.kustom.co/" ' .
+            'target="_blank">Kustom Merchant Portal</a></p>, under Integrations.' . "<br/><br/>" .
+            '<b>By activating Kustom using API credentials you agree to and accept the ' .
+            '<p style="display:inline"><a href="https://www.kustom.co/privacy-policy/" ' . 
+            'target="_blank">Kustom Merchant Privacy Policy</a></p>.<b/>';
 
         $actual = $this->onboarding->render($this->abstractElement);
         static::assertEquals($expected, $actual);
