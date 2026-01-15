@@ -244,7 +244,7 @@ class Api extends AbstractConfiguration
             return 'https://api.playground.kustom.co';
         }
 
-        return 'https://api' . $endpoint . '.klarna.com';
+        return 'https://api' . $endpoint . '.kustom.co';
     }
 
     /**

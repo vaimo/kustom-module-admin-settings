@@ -1,3 +1,7 @@
+1.1.1 / 2026-01-15
+==================
+
+  * KUSTOM-37 Changing the direct linking on the admin panel to Kustom  
 
 1.1.0 / 2025-11-10
 ==================

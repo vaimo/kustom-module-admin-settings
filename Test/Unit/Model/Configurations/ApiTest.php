@@ -302,7 +302,7 @@ class ApiTest extends TestCase
             ->with('klarna/api_eu/api_mode', 'stores', $this->store)
             ->willReturn(0);
 
-        static::assertEquals('https://api.klarna.com', $this->api->getApiUrl($this->store, 'EUR'));
+        static::assertEquals('https://api.kustom.co', $this->api->getApiUrl($this->store, 'EUR'));
     }
 
     public function testGetModeIsTestModeReturnsPlayground(): void
