@@ -72,7 +72,7 @@
                                 <field id="api_mode">0</field>
                             </depends>
                         </field>
-                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <field id="client_identifier_production" sortOrder="40" translate="label" type="text" showInDefault="0" showInWebsite="0" showInStore="0">
                             <label>Client Identifier (Production)</label>
                             <config_path>klarna/api_eu/client_identifier_production</config_path>
                             <depends>
@@ -98,7 +98,7 @@
                                 <field id="api_mode">1</field>
                             </depends>
                         </field>
-                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="0">
+                        <field id="client_identifier_playground" sortOrder="70" translate="label" type="text" showInDefault="0" showInWebsite="0" showInStore="0">
                             <label>Client Identifier (Playground)</label>
                             <config_path>klarna/api_eu/client_identifier_playground</config_path>
                             <depends>

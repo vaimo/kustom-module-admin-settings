@@ -1,3 +1,9 @@
+1.1.2 / 2026-02-18
+==================
+
+* KUSTOM-42 Remove obsolete "Client identifier" field from API credentials
+
+
 1.1.1 / 2026-01-15
 ==================
 

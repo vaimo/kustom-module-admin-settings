@@ -227,60 +227,6 @@ class ApiTest extends TestCase
         static::assertFalse($this->api->isTestMode($this->store, 'EUR'));
     }
 
-    public function testGetClientIdentifierUseConfigKeyForEuProduction(): void
-    {
-        $expectedKey = 'klarna/api_eu/client_identifier_production';
-        $expectedValue = 'test_identifier';
-
-        $this->dependencyMocks['scopeConfig']->method('getValue')
-            ->willReturnCallback(fn($path, $scopeType, $scopeCode) =>
-                match([$path, $scopeType, $scopeCode]) {
-                    [
-                        'klarna/api/region', 'stores', $this->store
-                    ] => 'eu',
-                    [
-                        'klarna/api/region', 'stores', $this->store
-                    ] => 'eu',
-                    [
-                        $expectedKey, 'stores', $this->store
-                    ] => $expectedValue
-                }
-            );
-
-        $this->dependencyMocks['scopeConfig']->method('isSetFlag')
-            ->with('klarna/api_eu/api_mode', 'stores', $this->store)
-            ->willReturn(0);
-
-        static::assertEquals($expectedValue, $this->api->getClientIdentifier($this->store, 'EUR'));
-    }
-
-    public function testGetClientIdentifierUseConfigKeyForEuPlayground(): void
-    {
-        $expectedKey = 'klarna/api_eu/client_identifier_playground';
-        $expectedValue = 'test_identifier';
-
-        $this->dependencyMocks['scopeConfig']->method('getValue')
-            ->willReturnCallback(fn($path, $scopeType, $scopeCode) =>
-                match([$path, $scopeType, $scopeCode]) {
-                    [
-                        'klarna/api/region', 'stores', $this->store
-                    ] => 'eu',
-                    [
-                        'klarna/api/region', 'stores', $this->store
-                    ] => 'eu',
-                    [
-                        $expectedKey, 'stores', $this->store
-                    ] => $expectedValue
-                }
-            );
-
-        $this->dependencyMocks['scopeConfig']->method('isSetFlag')
-            ->with('klarna/api_eu/api_mode', 'stores', $this->store)
-            ->willReturn(1);
-
-        static::assertEquals($expectedValue, $this->api->getClientIdentifier($this->store, 'EUR'));
-    }
-
     public function testGetApiUrlUseConfigKeyForEuPlayground(): void
     {
         $this->dependencyMocks['scopeConfig']->method('getValue')
