@@ -19,17 +19,20 @@ class Siwk extends AbstractConfiguration
 
     /**
      * Returns true if SIWK is enabled
+     * @deprecated SIWK is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabled(StoreInterface $store): bool
     {
-        return $this->isFlagSet($store, 'klarna/siwk/enabled');
+        return false;
+        // return $this->isFlagSet($store, 'klarna/siwk/enabled');
     }
 
     /**
      * Returns true if its enabled on the position
+     * @deprecated SIWK is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @param string $position
@@ -37,7 +40,8 @@ class Siwk extends AbstractConfiguration
      */
     public function isEnabledOnPosition(StoreInterface $store, string $position): bool
     {
-        return in_array($position, $this->getEnabledPositions($store), true);
+        return false;
+        // return in_array($position, $this->getEnabledPositions($store), true);
     }
 
     /**
