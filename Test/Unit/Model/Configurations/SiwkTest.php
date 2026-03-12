@@ -29,29 +29,38 @@ class SiwkTest extends TestCase
 
     public function testIsEnabledReturnsValue(): void
     {
-        $this->dependencyMocks['scopeConfig']->method('isSetFlag')
-            ->with('klarna/siwk/enabled', ScopeInterface::SCOPE_STORES, $this->store)
-            ->willReturn('1');
+        // KUSTOM-52: SIWK is disabled and always returns false
+        static::assertFalse($this->model->isEnabled($this->store));
 
-        static::assertTrue($this->model->isEnabled($this->store));
+        // Original implementation (deprecated - SIWK disabled):
+        // $this->dependencyMocks['scopeConfig']->method('isSetFlag')
+        //     ->with('klarna/siwk/enabled', ScopeInterface::SCOPE_STORES, $this->store)
+        //     ->willReturn('1');
+        // static::assertTrue($this->model->isEnabled($this->store));
     }
 
     public function testIsEnabledOnPositionNotEnabledReturnsFalse(): void
     {
-        $this->dependencyMocks['scopeConfig']->method('getValue')
-            ->with('klarna/siwk/placement', ScopeInterface::SCOPE_STORES, $this->store)
-            ->willReturn('a,b');
-
+        // KUSTOM-52: SIWK is disabled and always returns false
         static::assertFalse($this->model->isEnabledOnPosition($this->store, 'c'));
+
+        // Original implementation (deprecated - SIWK disabled):
+        // $this->dependencyMocks['scopeConfig']->method('getValue')
+        //     ->with('klarna/siwk/placement', ScopeInterface::SCOPE_STORES, $this->store)
+        //     ->willReturn('a,b');
+        // static::assertFalse($this->model->isEnabledOnPosition($this->store, 'c'));
     }
 
     public function testIsEnabledOnPositionEnabledReturnsTrue(): void
     {
-        $this->dependencyMocks['scopeConfig']->method('getValue')
-            ->with('klarna/siwk/placement', ScopeInterface::SCOPE_STORES, $this->store)
-            ->willReturn('a,b');
+        // KUSTOM-52: SIWK is disabled and always returns false
+        static::assertFalse($this->model->isEnabledOnPosition($this->store, 'b'));
 
-        static::assertTrue($this->model->isEnabledOnPosition($this->store, 'b'));
+        // Original implementation (deprecated - SIWK disabled):
+        // $this->dependencyMocks['scopeConfig']->method('getValue')
+        //     ->with('klarna/siwk/placement', ScopeInterface::SCOPE_STORES, $this->store)
+        //     ->willReturn('a,b');
+        // static::assertTrue($this->model->isEnabledOnPosition($this->store, 'b'));
     }
 
     public function testGetScopesReturnsValue(): void

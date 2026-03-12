@@ -101,8 +101,11 @@ class Sanitization
                     continue;
                 }
 
+                $sanitizedValue = $outerKey === 'added_checkbox_options'
+                    ? strip_tags($value)
+                    : filter_var(strip_tags($value), FILTER_SANITIZE_URL);
                 $configData['groups']['klarna_section']['groups'][$baseKey]['groups'][$outerKey]
-                    ['fields'][$innerKey]['value'] = filter_var(strip_tags($value), FILTER_SANITIZE_URL);
+                    ['fields'][$innerKey]['value'] = $sanitizedValue;
             }
         }
 
