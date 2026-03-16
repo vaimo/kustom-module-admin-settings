@@ -1,8 +1,13 @@
+1.1.3 / 2026-03-13
+==================
+
+  * KUSTOM-52 Hide/Disable Sign in with Klarna
+  * KUSTOM-56 Fix merchant checkbox text sanitization to preserve spaces and special characters 
+
 1.1.2 / 2026-02-18
 ==================
 
-* KUSTOM-42 Remove obsolete "Client identifier" field from API credentials
-
+  * KUSTOM-42 Remove obsolete "Client identifier" field from API credentials
 
 1.1.1 / 2026-01-15
 ==================

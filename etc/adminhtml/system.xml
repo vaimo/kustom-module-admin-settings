@@ -253,9 +253,10 @@
                         </field>
                     </group>
                 </group>
-                <group id="siwk" translate="label" sortOrder="40" showInDefault="1"
-                       showInWebsite="1" showInStore="0">
-                    <label>Sign in with Klarna</label>
+                <!-- Sign in with Klarna (SIWK) is DISABLED. This feature is no longer supported and will be removed in the next major release. -->
+                <group id="siwk" translate="label" sortOrder="40" showInDefault="0"
+                       showInWebsite="0" showInStore="0">
+                    <label>Sign in with Klarna [DEPRECATED - KUSTOM-52]</label>
                     <comment>Reduce fraud rates through verified identities and consented shopper data, improve personalized shopping experiences.</comment>
                     <field id="enabled" sortOrder="0" translate="label" type="select" showInDefault="1"
                            showInWebsite="1"
