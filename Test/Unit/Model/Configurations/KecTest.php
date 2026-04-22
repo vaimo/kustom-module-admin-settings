@@ -26,6 +26,8 @@ class KecTest extends TestCase
      */
     private Store $store;
 
+    // KUSTOM-88: KEC disabled
+    /*
     public function testIsEnabledUsingCorrectConfigKey(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -35,7 +37,10 @@ class KecTest extends TestCase
 
         static::assertTrue($this->kec->isEnabled($this->store));
     }
+    */
 
+    // KUSTOM-88: KEC disabled
+    /*
     public function testIsEnabledOnCartPageCartIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -45,17 +50,23 @@ class KecTest extends TestCase
 
         static::assertTrue($this->kec->isEnabledOnCartPage($this->store));
     }
+    */
 
     public function testIsEnabledOnCartPageCartIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: KEC disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('payment/kec/position', 'stores', $this->store)
             ->willReturn('product, x');
+        */
 
         static::assertFalse($this->kec->isEnabledOnCartPage($this->store));
     }
 
+    // KUSTOM-88: KEC disabled
+    /*
     public function testIsEnabledOnProductPageProductIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -65,17 +76,23 @@ class KecTest extends TestCase
 
         static::assertTrue($this->kec->isEnabledOnProductPage($this->store));
     }
+    */
 
     public function testIsEnabledOnProductPageProductIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: KEC disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('payment/kec/position', 'stores', $this->store)
             ->willReturn('cart, x');
+        */
 
         static::assertFalse($this->kec->isEnabledOnProductPage($this->store));
     }
 
+    // KUSTOM-88: KEC disabled
+    /*
     public function testIsEnabledOnMiniCartMiniCartIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -85,13 +102,17 @@ class KecTest extends TestCase
 
         static::assertTrue($this->kec->isEnabledOnMiniCart($this->store));
     }
+    */
 
     public function testIsEnabledOnMiniCartMiniCartIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: KEC disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('payment/kec/position', 'stores', $this->store)
             ->willReturn('cart, x', 'product');
+        */
 
         static::assertFalse($this->kec->isEnabledOnMiniCart($this->store));
     }

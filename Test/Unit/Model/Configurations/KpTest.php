@@ -28,6 +28,8 @@ class KpTest extends TestCase
      */
     private Store $store;
 
+    // KUSTOM-88: KP disabled
+    /*
     public function testIsB2bEnabledReturnsValue(): void
     {
         $this->dependencyMocks['scopeConfig']->method('isSetFlag')
@@ -36,7 +38,10 @@ class KpTest extends TestCase
 
         static::assertTrue($this->model->isB2bEnabled($this->store));
     }
+    */
 
+    // KUSTOM-88: KP disabled
+    /*
     public function testIsEnabledReturnsValue(): void
     {
         $this->dependencyMocks['scopeConfig']->method('isSetFlag')
@@ -45,6 +50,7 @@ class KpTest extends TestCase
 
         static::assertTrue($this->model->isEnabled($this->store));
     }
+    */
 
     public function testGetSortOrderUsingCorrectConfigKey(): void
     {

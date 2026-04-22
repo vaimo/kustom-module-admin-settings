@@ -26,6 +26,8 @@ class OsmTest extends TestCase
      */
     private Store $store;
 
+    // KUSTOM-88: OSM disabled
+    /*
     public function testIsEnabledWillReturnValue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -35,7 +37,10 @@ class OsmTest extends TestCase
 
         static::assertTrue($this->osm->isEnabled($this->store));
     }
+    */
 
+    // KUSTOM-88: OSM disabled
+    /*
     public function testIsEnabledOnCartPageCartIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -45,17 +50,23 @@ class OsmTest extends TestCase
 
         static::assertTrue($this->osm->isEnabledOnCartPage($this->store));
     }
+    */
 
     public function testIsEnabledOnCartPageCartIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: OSM disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('klarna/osm/position', 'stores', $this->store)
             ->willReturn('product, footer');
+        */
 
         static::assertFalse($this->osm->isEnabledOnCartPage($this->store));
     }
 
+    // KUSTOM-88: OSM disabled
+    /*
     public function testIsEnabledOnProductPageProductIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -65,17 +76,23 @@ class OsmTest extends TestCase
 
         static::assertTrue($this->osm->isEnabledOnProductPage($this->store));
     }
+    */
 
     public function testIsEnabledOnProductPageProductIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: OSM disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('klarna/osm/position', 'stores', $this->store)
             ->willReturn('footer, cart');
+        */
 
         static::assertFalse($this->osm->isEnabledOnProductPage($this->store));
     }
 
+    // KUSTOM-88: OSM disabled
+    /*
     public function testIsEnabledOnFooterIsPartOfListImpliesReturningTrue(): void
     {
         $this->dependencyMocks['scopeConfig']->expects($this->once())
@@ -85,13 +102,17 @@ class OsmTest extends TestCase
 
         static::assertTrue($this->osm->isEnabledOnFooter($this->store));
     }
+    */
 
     public function testIsEnabledOnFooterIsNotPartOfListImpliesReturningFalse(): void
     {
+        // KUSTOM-88: OSM disabled
+        /*
         $this->dependencyMocks['scopeConfig']->expects($this->once())
             ->method('getValue')
             ->with('klarna/osm/position', 'stores', $this->store)
             ->willReturn('product, cart');
+        */
 
         static::assertFalse($this->osm->isEnabledOnFooter($this->store));
     }
