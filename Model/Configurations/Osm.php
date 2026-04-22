@@ -19,46 +19,54 @@ class Osm extends AbstractConfiguration
 {
     /**
      * Returns true if its enabled
+     * @deprecated [KUSTOM-88] OSM is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabled(StoreInterface $store): bool
     {
-        return $this->isFlagSet($store, 'klarna/osm/enabled');
+        return false;
+        // return $this->isFlagSet($store, 'klarna/osm/enabled');
     }
 
     /**
      * Returns true if its enabled on the cart page
+     * @deprecated [KUSTOM-88] OSM is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnCartPage(StoreInterface $store): bool
     {
-        return in_array('cart', $this->getPositionList($store), true);
+        return false;
+        // return in_array('cart', $this->getPositionList($store), true);
     }
 
     /**
      * Returns true if its enabled on the cart page
+     * @deprecated [KUSTOM-88] OSM is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnProductPage(StoreInterface $store): bool
     {
-        return in_array('product', $this->getPositionList($store), true);
+        return false;
+        // return in_array('product', $this->getPositionList($store), true);
     }
 
     /**
      * Returns true if its enabled on the cart page
+     * @deprecated [KUSTOM-88] OSM is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnFooter(StoreInterface $store): bool
     {
-        return in_array('footer', $this->getPositionList($store), true);
+        return false;
+        // return in_array('footer', $this->getPositionList($store), true);
     }
 
     /**

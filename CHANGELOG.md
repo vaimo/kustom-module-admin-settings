@@ -1,3 +1,8 @@
+1.1.4 / 2026-04-22
+==================
+
+  * KUSTOM-88 DEPRECATED Hide/Disable Klarna Payments, On-Site Messaging and Express Checkout
+
 1.1.3 / 2026-03-13
 ==================
 
