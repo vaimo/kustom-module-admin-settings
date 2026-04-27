@@ -21,24 +21,28 @@ class Kp extends AbstractConfiguration
 {
     /**
      * Returns true if B2B is enabled
+     * @deprecated KP is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isB2bEnabled(StoreInterface $store): bool
     {
-        return $this->isFlagSet($store, 'payment/klarna_kp/enable_b2b');
+        return false;
+        // return $this->isFlagSet($store, 'payment/klarna_kp/enable_b2b');
     }
 
     /**
      * Returns true if KP is enabled
+     * @deprecated KP is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabled(StoreInterface $store): bool
     {
-        return $this->isFlagSet($store, 'payment/klarna_kp/active');
+        return false;
+        // return $this->isFlagSet($store, 'payment/klarna_kp/active');
     }
 
     /**

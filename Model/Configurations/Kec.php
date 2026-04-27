@@ -18,46 +18,54 @@ class Kec extends AbstractConfiguration
 {
     /**
      * Returns true if its enabled
+     * @deprecated KEC is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabled(StoreInterface $store): bool
     {
-        return $this->isFlagSet($store, 'payment/kec/enabled');
+        return false;
+        // return $this->isFlagSet($store, 'payment/kec/enabled');
     }
 
     /**
      * Returns true if its enabled on the cart page
+     * @deprecated KEC is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnCartPage(StoreInterface $store): bool
     {
-        return in_array('cart', $this->getEnabledPositionList($store), true);
+        return false;
+        // return in_array('cart', $this->getEnabledPositionList($store), true);
     }
 
     /**
      * Returns true if its enabled on the product page
+     * @deprecated KEC is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnProductPage(StoreInterface $store): bool
     {
-        return in_array('product', $this->getEnabledPositionList($store), true);
+        return false;
+        // return in_array('product', $this->getEnabledPositionList($store), true);
     }
 
     /**
      * Returns true if its enabled on the mini cart
+     * @deprecated KEC is deprecated and will be removed in next major release
      *
      * @param StoreInterface $store
      * @return bool
      */
     public function isEnabledOnMiniCart(StoreInterface $store): bool
     {
-        return in_array('mini_cart', $this->getEnabledPositionList($store), true);
+        return false;
+        // return in_array('mini_cart', $this->getEnabledPositionList($store), true);
     }
 
     /**
